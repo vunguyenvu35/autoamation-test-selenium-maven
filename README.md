@@ -1,2 +1,2 @@
-# autoamation-test-selenium-maven
-autoamation test with selenium maven
+# Automation-test-selenium-maven
+Automation test with selenium maven
