@@ -1,9 +1,10 @@
-package com.selenium;
+package com.selenium.pages;
 
+import com.selenium.DriverBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,18 +12,19 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoadTest {
+public class HomePage extends DriverBase {
 
     private WebDriver driver;
 
     private String webBaseRoot = "http://157.230.43.172/en";
 
+    private ExpectedCondition<Boolean> pageTitleStartsWith(final String searchString) {
+        return driver -> driver.getTitle().toLowerCase().startsWith(searchString.toLowerCase());
+    }
+
     @BeforeClass
     public void beforeClass() {
-        String currentDirectory = System.getProperty("user.dir");
-        String exePath = currentDirectory+"\\drivers\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", exePath);
-        driver = new ChromeDriver();
+
     }
 
     @AfterClass
@@ -31,12 +33,17 @@ public class LoadTest {
     }
 
     @Test
-    public void verifySearchButton() {
+    public void verifyHomePages() throws Exception {
+        // Create a new WebDriver instance
+        // Notice that the remainder of the code relies on the interface,
+        // not the implementation.
+        driver = getDriver();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.manage().window().maximize();
 
+        //  And now use this to visit Home page
         driver.get(webBaseRoot);
 
         String search_text = "Search";
@@ -49,4 +56,5 @@ public class LoadTest {
 
         Assert.assertEquals(text, search_text, "Text not found!");
     }
+
 }
