@@ -94,6 +94,7 @@ buildNumber.properties
 
 # End of https://www.gitignore.io/api/maven,intellij
 
-# Remove testng.xml
-testng.xml
-
+### testng report ###
+ExtentReports/
+!ExtentReports/.gitkeep
+*.iml
