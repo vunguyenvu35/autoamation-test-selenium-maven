@@ -47,7 +47,7 @@ public class Listener extends DriverBase implements ITestListener {
                 getScreenshotAs(OutputType.BASE64);
 
         //ExtentReports log and screenshot operations for failed tests.
-        ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addScreencast(base64Screenshot));
+        ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addScreenCapture(base64Screenshot));
     }
 
     @Override
